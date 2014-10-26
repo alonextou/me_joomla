@@ -1,0 +1,13 @@
+{
+    "name": "cmd/com_cmd_search",
+    "description": "CMD Search powered by Elasticsearch",
+    "authors": [
+        {
+            "name": "Alex Crawford",
+            "email": "acrawford@cmdagency.com"
+        }
+    ],
+    "require": {
+        "elasticsearch/elasticsearch": "~1.0"
+    }
+}

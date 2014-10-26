@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension type="component" version="1.0" method="upgrade">
+    <name>com_cmd_search</name>
+    <creationDate>2013-06-17</creationDate>
+    <copyright>Copyright (C) CMD 2014. All rights reserved.</copyright>
+    <license>GNU General Public License version 2 or later; see LICENSE.txt</license>
+    <author>Alex Crawford</author>
+    <authorEmail>acrawford@cmdagency.com</authorEmail>
+    <authorUrl>http://cmdagency.com</authorUrl>
+    <version>1.0.0</version>
+    <description>Search on Elasticsearch</description>
+    
+    <files folder="site">
+        <filename>index.html</filename>
+        <filename>cmd_search.php</filename>
+        <filename>controller.php</filename>
+        <filename>router.php</filename>
+        <folder>views</folder>
+        <folder>models</folder>
+        <folder>controllers</folder>
+        <folder>helpers</folder>
+        <folder>assets</folder>
+    </files>
+    <languages folder="site">
+			<language tag="en-GB">language/en-GB.com_cmd_search.ini</language>
+    </languages>
+    <administration>
+        <menu img="components/com_cmd_search/assets/images/s_com_cmd_search.png" >COM_cmd_search</menu>
+        <submenu>
+            
+			<menu link="option=com_cmd_search&amp;view=default" view="default" img="components/com_cmd_search/assets/images/s_default.png" alt="cmd_search/Default">COM_CMD_SEARCH_TITLE_DEFAULT</menu>
+
+        </submenu>
+        <files folder="administrator">
+            <filename>access.xml</filename>
+            <filename>config.xml</filename>
+            <filename>controller.php</filename>
+            <filename>index.html</filename>
+            <filename>cmd_search.php</filename>
+            <folder>controllers</folder>
+            <folder>assets</folder>
+            <folder>helpers</folder>
+            <folder>models</folder>
+            <folder>views</folder>
+        </files>
+        <languages folder="administrator">
+			<language tag="en-GB">language/en-GB.com_cmd_search.ini</language>
+			<language tag="en-GB">language/en-GB.com_cmd_search.sys.ini</language>
+        </languages>
+    </administration>
+</extension>

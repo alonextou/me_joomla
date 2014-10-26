@@ -1,0 +1,101 @@
+<?php
+header('Content-Type: application/json');
+/**
+ * @version     1.0.0
+ * @package     com_cmd_search
+ * @copyright   Copyright (C) 2013. All rights reserved.
+ * @license     GNU General Public License version 2 or later; see LICENSE.txt
+ * @author      Alex Crawford <acrawford@cmdagency.com> - http://cmdagency.com
+ */
+
+// No direct access.
+defined('_JEXEC') or die;
+
+require_once JPATH_COMPONENT.'/controller.php';
+
+class Cmd_searchControllerSearch extends Cmd_searchController
+{
+	var $debug = false;
+
+	public function postForm() {
+		$input = new JInput;
+		$facets['phrase'] = $input->get('phrase', '', 'string');
+		$facets['categories'] = $input->get('categories', '[]', 'array');
+		$facets['mediatypes'] = $input->get('mediatypes', '[]', 'array');
+		$facets['tags'] = $input->get('tags', '[]', 'array');
+
+		$index['articles'][] = $this->getArticles($facets);
+
+		//echo json_encode(array($phrase, $categories, $tags, $mediatypes));
+		echo json_encode($index);
+		if($this->debug)die;
+	}
+
+	function getArticles($facets){
+		// TODO: For API consistency, instantiate all variables
+		// and return the proper type, empty, if nothing else
+
+		// get articles
+		$returnValues = array(
+			'id',
+			'catid',
+			'title',
+			'alias',
+			'publish_up',
+			'modified',
+			'introtext',
+			'fulltext',
+			'metadesc',
+			'metakey',
+			'access',
+			'images'
+		);
+		$db = JFactory::getDBO();
+		$query = $db->getQuery(true);
+		$query->select($db->quoteName($returnValues));
+		$query->from($db->quoteName('#__content'));
+		$query->where($db->quoteName('state') . ' = '. $db->quote('1'));
+		$db->setQuery($query); 
+		$articles = $db->loadObjectList();
+
+		// prepare each article
+		foreach($articles as $article){
+
+			// add category alias (also type)
+			$categories = JCategories::getInstance('content');
+			$category = $categories->get($article->catid);
+			$article->category = $category->alias;
+
+			// add tags
+			$tags = new JHelperTags;
+			$tags->getItemTags('com_content.article', $article->id);
+			foreach ($tags->itemTags as $tag){
+				$article->tags[] = $tag->title;
+			}
+
+			// add keywords
+            if(!$article->metakey){
+            	$keywords = array();
+            } else {
+            	$keywords = array_map('trim', explode(',', $article->metakey));
+            }
+           	$article->keywords = $keywords;
+
+			// decode json for json encoding...
+			$article->images = json_decode($article->images);
+		}
+
+		return $articles;
+	}
+
+	function getArticleById($id){
+
+	}
+
+	public function getModel($name = 'Result', $prefix = 'Cmd-searchModel')
+	{
+		$model = parent::getModel($name, $prefix, array('ignore_request' => true));
+		return $model;
+	}
+
+}

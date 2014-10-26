@@ -1,0 +1,104 @@
+.head-search{
+	margin-top: 0;
+}
+
+.logo-text a{
+	letter-spacing: 1px;
+	color: #111;
+	text-transform: uppercase;
+}
+
+#t3-mainnav > .container {
+
+}
+
+.t3-content{
+
+}
+
+/* Module and Component */
+
+.module .module-title, .componentheading{
+	background: #111;
+	padding: 7px 12px;
+	color: #fff;
+	letter-spacing: 1px;
+	font-size: 18px;
+	line-height: 1;
+	margin-top: 20px;
+}
+
+.componentheading{
+	margin-bottom: 30px;
+}
+
+/* T3 Overrides */
+
+.navbar-default{
+	background-color: #ea5654;
+	border: 0;
+}
+
+.navbar-default .navbar-nav > li > a{
+	color: #fff;
+	letter-spacing: 1px;
+}
+
+.navbar-default .navbar-nav > li > a:hover,
+.navbar-default .navbar-nav > li > a:focus{
+	color: #111;
+}
+
+.navbar-default .navbar-nav > .active > a,
+.navbar-default .navbar-nav > .active > a:hover,
+.navbar-default .navbar-nav > .active > a:focus
+{
+	background-color: #111;
+	color: #ea5654;
+}
+
+.t3-sl{
+	padding-top: 20px;
+}
+
+.t3-module{
+	margin-bottom: 0;
+}
+
+.page-header{
+	border: 0;
+	padding-bottom: 0;
+}
+
+/* Nav Right */
+
+#custom-nav-right {
+	height: 50px;
+	overflow: hidden;
+	float: right;
+}
+
+#custom-nav-right .navbar-nav{
+	margin: 0;
+}
+
+#custom-nav-right li{
+	float: left;
+}
+
+#custom-nav-right li a{
+	padding: 0 0 0 15px;
+	font-size: 32px;
+	line-height: 50px;
+}
+
+/* alexcrawford.me custom template */
+
+#what-i-do{
+	text-align: center;
+}
+
+#what-i-do img{
+	width: 52px;
+	padding: 0 10px;
+}

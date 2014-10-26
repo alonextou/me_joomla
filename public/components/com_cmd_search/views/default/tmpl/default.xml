@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<metadata>
+	<layout title="Default" option="View">
+        <message>
+            <![CDATA[Search results page]]>
+        </message>
+	</layout>
+
+	<fields name="request">
+		<fieldset name="request" addfieldpath="/administrator/components/com_cmd_search/models/fields">
+			<field name="cmd_search_tags" type="tag" label="JTAG" description="JTAG_DESC" mode="nested" class="inputbox span6 small" multiple="true" custom="false" />
+			<field name="cmd_search_category" type="category" extension="com_content" label="Select a category" description="" show_root="true" />
+			<!--
+			<field name="title" type="city" label="JGLOBAL_TITLE"
+		        description="JFIELD_TITLE_DESC"
+		        required="true" />
+			<field
+				name="phrase"
+				type="text"
+				label="Phrase"
+				description="Phrase"
+				filter='raw'
+				>
+			</field>
+			<field
+				name="types"
+				type="text"
+				label="Types"
+				description="Types"
+				filter='raw'
+				>
+			</field>
+			<field
+				name="topics"
+				type="text"
+				label="Topics"
+				description="Topics"
+				filter='raw'
+				>
+			</field>
+			<field
+				name="keywords"
+				type="text"
+				label="Keywords"
+				description="Keywords"
+				filter='raw'
+				>
+			</field>
+			-->
+		</fieldset>
+	</fields>
+
+</metadata>
+

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension
+	type="module"
+	version="3.1"
+	client="site"
+	method="upgrade">
+	<name>mod_cmd_search_showcase</name>
+	<author>Alex Crawford</author>
+	<creationDate>July 2014</creationDate>
+	<copyright>CMD Agency</copyright>
+	<license>GNU General Public License version 2 or later; see LICENSE.txt</license>
+	<authorEmail>acrawford@cmdagency.com</authorEmail>
+	<authorUrl>www.cmdagency.com</authorUrl>
+	<version>1.0.0</version>
+	<description>CMD Search filters</description>
+	<files>
+		<filename module="mod_cmd_search_showcase">mod_cmd_search_showcase.php</filename>
+		<filename>index.html</filename>
+		<filename>helper.php</filename>
+		<folder>tmpl</folder>
+	</files>
+	<config>
+		<fields name="params">
+			<fieldset name="options" addfieldpath="/administrator/components/com_cmd_search/models/fields">
+				<field name="cmd_search_facets" type="tag" label="JTAG" description="JTAG_DESC" mode="nested" class="inputbox span6 small" multiple="true" custom="false" />
+			</fieldset>
+		</fields>
+	</config>
+</extension>

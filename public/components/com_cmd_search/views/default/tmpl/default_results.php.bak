@@ -1,0 +1,102 @@
+<?php foreach ($this->response['results'] as $result) { ?>
+<div class="column-2 item">
+
+	<?php $source = $result['_source']; ?>
+
+	<?php if(!empty($source['flags'])) { ?>
+	<div class="flags">
+		<?php foreach ($source['flags'] as $flag) { ?>
+			<!-- TODO: change URL to default search menu item param -->
+			<a href="<?php echo JRoute::_('/search?flags='.$flag); ?>">
+				<span class="topic <?php echo strtolower(preg_replace('/\s+/', '-', $flag)); ?>">
+					<?php echo $flag; ?>
+				</span>
+			</a>
+		<?php } ?>
+	</div>
+	<?php } ?>
+
+	<h2 class="item-title">
+		<a href="index.php?option=com_cmd_search&view=result&id=<?php echo $source['id']; ?>">
+			<?php echo $source['title']; ?>
+		</a>
+	</h2>
+
+	<?php if(!empty($source['topics'])) { ?>
+	<div class="topics">
+		<?php foreach ($source['topics'] as $topic) { ?>
+			<span class="topic">
+				<!-- TODO: change URL to default search menu item param -->
+				<a href="<?php echo JRoute::_('/search?topics='.$topic); ?>" class="label">
+					<?php echo $topic; ?>
+				</a>
+			</span>
+		<?php } ?>
+	</div>
+	<?php } ?>
+
+	<?php if(!empty($source['types'])) { ?>
+	<div class="types">
+		<?php foreach ($source['types'] as $type) { ?>
+			<span class="type">
+				<!-- TODO: change URL to default search menu item param -->
+				<a href="<?php echo JRoute::_('/search?types='.$type); ?>" class="label label-info">
+					<?php echo $type; ?>
+				</a>
+			</span>
+		<?php } ?>
+	</div>
+	<?php } ?>
+
+	<?php if(!empty($source['extensions'])) { ?>
+	<div class="extensions">
+		<?php foreach ($source['extensions'] as $extension) { ?>
+			<span class="extension">
+				<!-- TODO: change URL to default search menu item param -->
+				<a href="<?php echo JRoute::_('/search?extensions='.$extension); ?>" class="label label-warning">
+					<?php echo $extension; ?>
+				</a>
+			</span>
+		<?php } ?>
+	</div>
+	<?php } ?>
+
+	<?php if(!empty($source['introtext'])) { ?>
+		<div class="introtext">
+			<p><?php echo $source['introtext']; ?></p>
+		</div>
+	<?php } ?>
+
+	<?php $tmpFile = array(); ?>
+	<?php foreach ($source['files'] as $file) {
+		if($file['type'] == 'link' || $file['type'] == 'file'){
+			$tmpFile['title'] = $file['title'];
+			$tmpFile['url'] = $file['path'];
+			break;
+		} elseif($file['type'] == 'embed') {
+			$tmpFile['title'] = $file['title'];
+			$tmpFile['url'] = $file['path'];
+		}
+		$tmpFile['width'] = '800';
+		$tmpFile['height'] = '1200';
+		var_dump($tmpFile);
+	} ?>
+
+	<!-- This is the anchor toggling the modal -->
+	<?php if(!empty($tmpFile)) { ?>
+
+		<a href="<?php echo $tmpFile['url']; ?>" class="cmd_search_modal" data-uk-modal><?php echo $tmpFile['title']; ?></a>
+
+		<!-- This is the modal -->
+		<div id="my-id" class="uk-modal">
+		    <div class="uk-modal-dialog uk-modal-dialog-frameless">
+		        <a href="" class="uk-modal-close uk-close uk-close-alt"></a>
+		        <div class="iframe"></div>
+		    </div>
+		</div>
+		
+	<?php } ?>
+	<hr>
+
+</div>
+<?php } ?>
